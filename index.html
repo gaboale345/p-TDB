@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller: Comparación y Selección de SGBD para PyMEs | Presentación Ejecutiva</title>
+  <meta name="description" content="Análisis técnico, operativo y económico de SGBD para PyMEs locales: PostgreSQL, MySQL, MS SQL Server Express, MongoDB y SQLite.">
+  
+  <!-- Google Fonts: Inter, Poppins & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+
+  <!-- Barra Superior de Control de Presentación -->
+  <header class="pres-header" id="presHeader">
+    <div class="header-left">
+      <div class="brand-badge">
+        <i class="ph-fill ph-database"></i>
+        <span>SGBD · PyME Lab</span>
+      </div>
+      <span class="slide-breadcrumb" id="slideBreadcrumb">01 / Introducción y Objetivos</span>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-track" title="Progreso de la presentación">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="nav-icon-btn" id="btnNotes" title="Notas del Orador [N]">
+        <i class="ph ph-chat-centered-text"></i>
+        <span class="btn-text">Notas</span>
+      </button>
+      <button class="nav-icon-btn" id="btnOverview" title="Vista de Mosaico / Esquema [O]">
+        <i class="ph ph-squares-four"></i>
+        <span class="btn-text">Diapositivas</span>
+      </button>
+      <button class="nav-icon-btn" id="btnTheme" title="Alternar Modo Oscuro/Luz [T]">
+        <i class="ph ph-moon" id="themeIcon"></i>
+      </button>
+      <button class="nav-icon-btn" id="btnFullscreen" title="Pantalla Completa [F]">
+        <i class="ph ph-corners-out" id="fullscreenIcon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal de la Presentación -->
+  <main class="presentation-stage" id="presentationStage">
+    <div class="slides-wrapper" id="slidesWrapper">
+
+      <!-- ==========================================
+           SLIDE 1: PORTADA EJECUTIVA (BENTO HERO)
+           ========================================== -->
+      <section class="slide active" id="slide-1" data-title="Portada Ejecutiva" data-section="Inicio">
+        <div class="slide-content cover-bento-layout">
+          <!-- Header del Cover -->
+          <div class="cover-top-bar">
+            <div class="cover-status-badge">
+              <span class="pulse-dot"></span>
+              <span>PYME DATA LAB · BENCHMARK & SELECCIÓN DE ARQUITECTURA</span>
+            </div>
+            <div class="cover-edition-tag">EDICIÓN EJECUTIVA 2026</div>
+          </div>
+
+          <!-- Hero Central -->
+          <div class="cover-hero-section">
+            <span class="cover-eyebrow">TALLER ESTRATÉGICO DE DATOS</span>
+            <h1 class="cover-main-title">
+              SGBD para <span class="highlight-title">PyMEs</span>
+            </h1>
+            <p class="cover-main-desc">
+              Evaluación técnica, económica y operativa de cinco motores líderes para maximizar la fiabilidad y eliminar costos de licenciamiento en la pequeña y mediana empresa.
+            </p>
+          </div>
+
+          <!-- Bento Grid de los 5 SGBD Candidatos -->
+          <div class="cover-bento-grid">
+            <div class="bento-engine-card" data-target-slide="5">
+              <div class="bento-card-top">
+                <i class="ph-bold ph-database"></i>
+                <span class="bento-model-tag">RDBMS</span>
+              </div>
+              <div class="bento-engine-name">PostgreSQL</div>
+              <div class="bento-engine-sub">ACID Estricto · JSONB Híbrido</div>
+              <div class="bento-engine-metric">$0 TCO Licencia</div>
+            </div>
+
+            <div class="bento-engine-card" data-target-slide="6">
+              <div class="bento-card-top">
+                <i class="ph-bold ph-hard-drives"></i>
+                <span class="bento-model-tag">Web Stack</span>
+              </div>
+              <div class="bento-engine-name">MySQL / MariaDB</div>
+              <div class="bento-engine-sub">Alta Lectura · Universal</div>
+              <div class="bento-engine-metric">Estándar Abierto</div>
+            </div>
+
+            <div class="bento-engine-card" data-target-slide="7">
+              <div class="bento-card-top">
+                <i class="ph-bold ph-windows-logo"></i>
+                <span class="bento-model-tag">Windows</span>
+              </div>
+              <div class="bento-engine-name">MS SQL Express</div>
+              <div class="bento-engine-sub">SSMS Nativo · Ecosistema .NET</div>
+              <div class="bento-engine-metric">Límite: 10 GB</div>
+            </div>
+
+            <div class="bento-engine-card" data-target-slide="8">
+              <div class="bento-card-top">
+                <i class="ph-bold ph-leaf"></i>
+                <span class="bento-model-tag">NoSQL</span>
+              </div>
+              <div class="bento-engine-name">MongoDB</div>
+              <div class="bento-engine-sub">Documental BSON Dinámico</div>
+              <div class="bento-engine-metric">Esquema Flexible</div>
+            </div>
+
+            <div class="bento-engine-card" data-target-slide="9">
+              <div class="bento-card-top">
+                <i class="ph-bold ph-file-code"></i>
+                <span class="bento-model-tag">Serverless</span>
+              </div>
+              <div class="bento-engine-name">SQLite</div>
+              <div class="bento-engine-sub">Archivo Único · Cero Admin</div>
+              <div class="bento-engine-metric">0 MB Sobrecarga</div>
+            </div>
+          </div>
+
+          <!-- Footer Metadatos -->
+          <div class="cover-bottom-bar">
+            <div class="cover-kpis">
+              <div class="kpi-pill">
+                <strong>5</strong><span>SGBD Evaluados</span>
+              </div>
+              <div class="kpi-pill">
+                <strong>3 Años</strong><span>Horizonte TCO</span>
+              </div>
+              <div class="kpi-pill">
+                <strong>100%</strong><span>Análisis Data-Driven</span>
+              </div>
+            </div>
+
+            <div class="cover-nav-hint">
+              <span>Usa <kbd>→</kbd> o <kbd>Espacio</kbd> para navegar</span>
+              <i class="ph ph-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Dar la bienvenida al comité evaluador y a los directivos de la PyME.</li>
+            <li>Enfatizar que la base de datos es el cimiento de la continuidad operacional: si falla o es inadecuada, frena el crecimiento.</li>
+            <li>Aclarar que no existe "la mejor base de datos absoluta", sino la solución óptima para los recursos humanos, técnicos y financieros de una PyME.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 2: OBJETIVO Y CONTEXTO PYME
+           ========================================== -->
+      <section class="slide" id="slide-2" data-title="Contexto y Desafíos" data-section="Contexto">
+        <div class="slide-content">
+          <div class="slide-header">
+            <div class="tag-label"><i class="ph ph-crosshair"></i> Definición del Problema</div>
+            <h2>El Reto de los Datos en la PyME Local</h2>
+            <p class="slide-lead">Las decisiones de software en pequeñas y medianas empresas están condicionadas por restricciones reales de infraestructura y capital humano.</p>
+          </div>
+
+          <div class="grid-3-cards">
+            <div class="glass-card stat-card">
+              <div class="card-icon warning"><i class="ph ph-currency-dollar-simple"></i></div>
+              <h3>Presupuesto Acotado</h3>
+              <p>El costo de licenciamiento por núcleo (como Oracle o SQL Server Enterprise) resulta prohibitivo. Se prioriza el <strong>Costo Total de Propiedad (TCO)</strong> cercano a cero en licencias.</p>
+              <div class="card-badge">Restricción Financiera</div>
+            </div>
+
+            <div class="glass-card stat-card">
+              <div class="card-icon primary"><i class="ph ph-cpu"></i></div>
+              <h3>Infraestructura Limitada</h3>
+              <p>Frecuente uso de servidores compartidos, equipos de gama media (8-16 GB RAM) o instancias cloud económicas (AWS Lightsail, DigitalOcean) sin clusters dedicados.</p>
+              <div class="card-badge">Restricción de Hardware</div>
+            </div>
+
+            <div class="glass-card stat-card">
+              <div class="card-icon success"><i class="ph ph-user-gear"></i></div>
+              <h3>Ausencia de DBA Dedicado</h3>
+              <p>El mantenimiento suele recaer en desarrolladores generalistas o técnicos de TI multidisciplinarios. Las herramientas de administración deben ser amigables y robustas.</p>
+              <div class="card-badge">Capital Humano</div>
+            </div>
+          </div>
+
+          <div class="callout-box">
+            <i class="ph-fill ph-lightbulb"></i>
+            <div>
+              <strong>Objetivo del Taller:</strong>
+              Analizar técnicamente las características, fortalezas y requerimientos de instalación de 5 SGBD destacados para emitir una recomendación justificada que maximice el retorno de inversión y garantice estabilidad a largo plazo.
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Explicar que muchas PyMEs cometen el error de elegir por "fama" o por "lo que usa Netflix", terminando con sistemas sobredimensionados difíciles de mantener.</li>
+            <li>Resaltar que la pérdida de datos o tiempos de caída en facturación paralizan el negocio inmediatamente.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 3: CRITERIOS DE EVALUACIÓN
+           ========================================== -->
+      <section class="slide" id="slide-3" data-title="Criterios de Evaluación" data-section="Criterios">
+        <div class="slide-content">
+          <div class="slide-header">
+            <div class="tag-label"><i class="ph ph-scales"></i> Marco de Decisión</div>
+            <h2>Los 5 Pilares de Selección para la PyME</h2>
+            <p class="slide-lead">Matriz estandarizada de evaluación ponderada para garantizar una decisión técnica y financiera neutral.</p>
+          </div>
+
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <div class="pillar-number">01</div>
+              <div class="pillar-info">
+                <h4>Requerimientos & Huella de Hardware</h4>
+                <p>Consumo base de memoria RAM, CPU en reposo y carga, soporte multiplataforma (Windows/Linux) y complejidad del despliegue.</p>
+                <div class="pillar-metric">Peso: 20%</div>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-number">02</div>
+              <div class="pillar-info">
+                <h4>Licenciamiento y Costo Total (TCO)</h4>
+                <p>Licencia libre vs comercial, costos ocultos por cliente/conexión (CALs), soporte a largo plazo y tarifas de actualización.</p>
+                <div class="pillar-metric">Peso: 25%</div>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-number">03</div>
+              <div class="pillar-info">
+                <h4>Integridad, Rendimiento & ACID</h4>
+                <p>Cumplimiento estricto de transacciones (facturación/inventarios), velocidad en consultas concurrentes y recuperación ante fallos.</p>
+                <div class="pillar-metric">Peso: 25%</div>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-number">04</div>
+              <div class="pillar-info">
+                <h4>Usabilidad y Herramientas de Gestión</h4>
+                <p>Disponibilidad de clientes gráficos (GUI), facilidad para configurar copias de seguridad (backups automáticos) y curvas de aprendizaje.</p>
+                <div class="pillar-metric">Peso: 15%</div>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-number">05</div>
+              <div class="pillar-info">
+                <h4>Ecosistema y Facilidad de Reclutamiento</h4>
+                <p>Compatibilidad con lenguajes (Node, Python, C#, PHP), comunidad activa de soporte y facilidad de encontrar técnicos locales.</p>
+                <div class="pillar-metric">Peso: 15%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Destacar la ponderación: el 50% de la decisión descansa en Licenciamiento/Costo e Integridad de Datos.</li>
+            <li>Mencionar que una PyME no puede permitirse que una venta se duplique o que el inventario quede descuadrado por falta de atomicidad transaccional.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 4: PANORAMA DE LOS 5 SGBD SELECCIONADOS
+           ========================================== -->
+      <section class="slide" id="slide-4" data-title="Los 5 SGBD Seleccionados" data-section="Panorama">
+        <div class="slide-content">
+          <div class="slide-header">
+            <div class="tag-label"><i class="ph ph-squares-four"></i> Catálogo Tecnológico</div>
+            <h2>Panorama de los 5 SGBD Evaluados</h2>
+            <p class="slide-lead">Cinco paradigmas representativos que cubren desde bases de datos embebidas hasta motores relacionales empresariales y NoSQL.</p>
+          </div>
+
+          <div class="sgbd-overview-grid">
+            <!-- 1. PostgreSQL -->
+            <div class="sgbd-card-overview" data-target-slide="5">
+              <div class="sgbd-card-top">
+                <span class="tech-icon-circle pg"><i class="ph-fill ph-database"></i></span>
+                <span class="type-pill rdbms">RDBMS Objeto-Relacional</span>
+              </div>
+              <h3>PostgreSQL</h3>
+              <p class="sgbd-tagline">"El motor libre más avanzado y robusto del mundo"</p>
+              <ul class="sgbd-quick-points">
+                <li><i class="ph-fill ph-check-circle"></i> ACID completo & Extensiones (PostGIS, JSONB)</li>
+                <li><i class="ph-fill ph-check-circle"></i> Licencia libre PostgreSQL (estilo MIT)</li>
+                <li><i class="ph-fill ph-check-circle"></i> Soporte de concurrencia MVCC avanzada</li>
+              </ul>
+              <div class="sgbd-footer-badge">Ideal: ERPs, Facturación, Analítica</div>
+            </div>
+
+            <!-- 2. MySQL / MariaDB -->
+            <div class="sgbd-card-overview" data-target-slide="6">
+              <div class="sgbd-card-top">
+                <span class="tech-icon-circle my"><i class="ph-fill ph-hard-drives"></i></span>
+                <span class="type-pill rdbms">RDBMS Relacional Web</span>
+              </div>
+              <h3>MySQL / MariaDB</h3>
+              <p class="sgbd-tagline">"El estándar indiscutido de aplicaciones web e intranets"</p>
+              <ul class="sgbd-quick-points">
+                <li><i class="ph-fill ph-check-circle"></i> Máxima compatibilidad con hosting y CMS</li>
+                <li><i class="ph-fill ph-check-circle"></i> Amplio pool de desarrolladores en el mercado</li>
+                <li><i class="ph-fill ph-check-circle"></i> Rápido en lecturas, fácil administración</li>
+              </ul>
+              <div class="sgbd-footer-badge">Ideal: Tiendas Online, Sitios Web, CRM</div>
+            </div>
+
+            <!-- 3. MS SQL Server Express -->
+            <div class="sgbd-card-overview" data-target-slide="7">
+              <div class="sgbd-card-top">
+                <span class="tech-icon-circle ms"><i class="ph-fill ph-windows-logo"></i></span>
+                <span class="type-pill rdbms">RDBMS Comercial Gratuito</span>
+              </div>
+              <h3>MS SQL Server Express</h3>
+              <p class="sgbd-tagline">"Potencia corporativa integrada al ecosistema Windows"</p>
+              <ul class="sgbd-quick-points">
+                <li><i class="ph-fill ph-check-circle"></i> SSMS: la mejor herramienta visual nativa</li>
+                <li><i class="ph-fill ph-check-circle"></i> Integración 100% con .NET, Excel y Power BI</li>
+                <li><i class="ph-fill ph-warning-circle text-amber"></i> Límite de 10 GB por BD y 1.4 GB de RAM</li>
+              </ul>
+              <div class="sgbd-footer-badge">Ideal: PyMEs Windows-Centric & .NET</div>
+            </div>
+
+            <!-- 4. MongoDB -->
+            <div class="sgbd-card-overview" data-target-slide="8">
+              <div class="sgbd-card-top">
+                <span class="tech-icon-circle mo"><i class="ph-fill ph-leaf"></i></span>
+                <span class="type-pill nosql">NoSQL Documental</span>
+              </div>
+              <h3>MongoDB</h3>
+              <p class="sgbd-tagline">"Flexibilidad de esquemas basada en documentos JSON/BSON"</p>
+              <ul class="sgbd-quick-points">
+                <li><i class="ph-fill ph-check-circle"></i> Sin migraciones de esquemas rígidas</li>
+                <li><i class="ph-fill ph-check-circle"></i> Ideal para catálogos con atributos cambiantes</li>
+                <li><i class="ph-fill ph-warning-circle text-amber"></i> Mayor consumo de memoria RAM</li>
+              </ul>
+              <div class="sgbd-footer-badge">Ideal: Catálogos dinámicos, Logs, IoT</div>
+            </div>
+
+            <!-- 5. SQLite -->
+            <div class="sgbd-card-overview" data-target-slide="9">
+              <div class="sgbd-card-top">
+                <span class="tech-icon-circle sq"><i class="ph-fill ph-file-code"></i></span>
+                <span class="type-pill embedded">RDBMS Embebido Serverless</span>
+              </div>
+              <h3>SQLite</h3>
+              <p class="sgbd-tagline">"Cero configuración: la base de datos en un solo archivo"</p>
+              <ul class="sgbd-quick-points">
+                <li><i class="ph-fill ph-check-circle"></i> Sin proceso servidor ni servicio que monitorear</li>
+                <li><i class="ph-fill ph-check-circle"></i> Copia de seguridad instantánea copiando 1 archivo</li>
+                <li><i class="ph-fill ph-warning-circle text-amber"></i> Bloqueo en escrituras concurrentes masivas</li>
+              </ul>
+              <div class="sgbd-footer-badge">Ideal: POS de caja única, Apps locales</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Explicar brevemente el porqué de esta selección: abarca los 3 motores libres más famosos, la opción gratuita corporativa de Microsoft, la opción documental líder y la alternativa embebida sin servidor.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 5: FICHA TÉCNICA 1: POSTGRESQL
+           ========================================== -->
+      <section class="slide" id="slide-5" data-title="PostgreSQL en Detalle" data-section="Detalle SGBD">
+        <div class="slide-content">
+          <div class="profile-layout">
+            <div class="profile-sidebar">
+              <div class="engine-avatar pg-avatar">
+                <i class="ph-fill ph-database"></i>
+              </div>
+              <h3>PostgreSQL</h3>
+              <span class="version-tag">v16.x / v17 LTS</span>
+              
+              <div class="spec-list">
+                <div class="spec-row">
+                  <span>Modelo:</span>
+                  <strong>Objeto-Relacional</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Licencia:</span>
+                  <strong class="text-green">Open Source (PostgreSQL)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Costo Licencia:</span>
+                  <strong class="text-green">$0 (Ilimitado)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>GUI Principal:</span>
+                  <strong>pgAdmin 4 / DBeaver</strong>
+                </div>
+              </div>
+
+              <div class="score-pill">
+                <span>Puntuación PyME:</span>
+                <strong>9.5 / 10</strong>
+              </div>
+            </div>
+
+            <div class="profile-details">
+              <div class="profile-tabs-header">
+                <button class="ptab-btn active" data-tab="pg-features">Características Clave</button>
+                <button class="ptab-btn" data-tab="pg-pros">Ventajas PyME</button>
+                <button class="ptab-btn" data-tab="pg-install">Requerimientos de Instalación</button>
+              </div>
+
+              <div class="ptab-content active" id="pg-features">
+                <div class="feature-cards-grid">
+                  <div class="f-card">
+                    <i class="ph-fill ph-shield-check"></i>
+                    <h4>Cumplimiento ACID Estricto</h4>
+                    <p>Integridad transaccional intachable. Concurrencia MVCC (Multiversion Concurrency Control) que evita bloqueos de lectura mientras se escribe.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-brackets-curly"></i>
+                    <h4>Soporte Híbrido JSONB</h4>
+                    <p>Permite indexar y consultar documentos JSON nativamente con alto rendimiento, ofreciendo lo mejor del mundo relacional y NoSQL a la vez.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-puzzle-piece"></i>
+                    <h4>Arquitectura Extensible</h4>
+                    <p>Soporte para extensiones profesionales como <code>PostGIS</code> (geolocalización/rutas de reparto) y búsqueda de texto completo.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-lock-key"></i>
+                    <h4>Seguridad a Nivel de Fila (RLS)</h4>
+                    <p>Políticas de seguridad granulares que protegen información contable sensible entre diferentes sucursales de la empresa.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="pg-pros">
+                <div class="pros-cons-grid">
+                  <div class="pros-box">
+                    <h4><i class="ph-fill ph-thumbs-up"></i> Ventajas para la PyME</h4>
+                    <ul>
+                      <li><strong>Cero costos de licencia:</strong> Puede instalarse en hardware propio o nube sin pagar por CPU, usuario o tamaño de base de datos.</li>
+                      <li><strong>Longevidad asegurada:</strong> Respaldada por una fundación neutral, sin riesgo de que una corporación cambie las condiciones comerciales.</li>
+                      <li><strong>Escalabilidad comprobada:</strong> Soporta desde 5 hasta miles de usuarios concurrentes sin degradación.</li>
+                    </ul>
+                  </div>
+                  <div class="cons-box">
+                    <h4><i class="ph-fill ph-warning"></i> Consideraciones</h4>
+                    <ul>
+                      <li>Curva de afinación inicial (requiere ajustar parámetros de memoria en <code>postgresql.conf</code> para máximo desempeño).</li>
+                      <li>pgAdmin 4 puede sentirse algo pesado comparado con clientes de escritorio ligeros.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="pg-install">
+                <div class="install-specs">
+                  <div class="install-req-grid">
+                    <div class="req-item">
+                      <span class="req-label">RAM Mínima:</span>
+                      <span class="req-val">1 GB (2 GB para producción)</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">RAM Recomendada:</span>
+                      <span class="req-val">4 GB - 8 GB</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Espacio en Disco:</span>
+                      <span class="req-val">500 MB base + datos</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Sistemas Operativos:</span>
+                      <span class="req-val">Ubuntu/Debian, Windows 10/Server, macOS, Docker</span>
+                    </div>
+                  </div>
+
+                  <div class="code-preview">
+                    <div class="code-header">
+                      <span>Instalación Rápida (Ubuntu Server LTS / Docker)</span>
+                      <span class="code-lang">BASH</span>
+                    </div>
+                    <pre><code><span class="c-comment"># Opción 1: Paquete nativo Debian/Ubuntu</span>
+sudo apt update && sudo apt install -y postgresql postgresql-contrib
+
+<span class="c-comment"># Opción 2: Docker en PyME (Recomendado para aislamiento)</span>
+docker run --name pyme-postgres -e POSTGRES_PASSWORD=Secr3t2026! -p 5432:5432 -v pgdata:/var/lib/postgresql/data -d postgres:16-alpine</code></pre>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Explicar por qué PostgreSQL es hoy el favorito de las startups y PyMEs tecnológicas: no tiene "versión Enterprise de pago", todo viene en la versión libre.</li>
+            <li>El soporte de JSONB permite que la PyME no necesite un MongoDB adicional para guardar catálogos variables.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 6: FICHA TÉCNICA 2: MYSQL / MARIADB
+           ========================================== -->
+      <section class="slide" id="slide-6" data-title="MySQL / MariaDB en Detalle" data-section="Detalle SGBD">
+        <div class="slide-content">
+          <div class="profile-layout">
+            <div class="profile-sidebar">
+              <div class="engine-avatar my-avatar">
+                <i class="ph-fill ph-hard-drives"></i>
+              </div>
+              <h3>MySQL / MariaDB</h3>
+              <span class="version-tag">v8.x (MySQL) / 11.x (MariaDB)</span>
+              
+              <div class="spec-list">
+                <div class="spec-row">
+                  <span>Modelo:</span>
+                  <strong>Relacional RDBMS</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Licencia:</span>
+                  <strong>GPLv2 / Comercial</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Costo Licencia:</span>
+                  <strong class="text-green">$0 (Comunidad / MariaDB)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>GUI Principal:</span>
+                  <strong>MySQL Workbench / HeidiSQL / phpMyAdmin</strong>
+                </div>
+              </div>
+
+              <div class="score-pill">
+                <span>Puntuación PyME:</span>
+                <strong>9.0 / 10</strong>
+              </div>
+            </div>
+
+            <div class="profile-details">
+              <div class="profile-tabs-header">
+                <button class="ptab-btn active" data-tab="my-features">Características Clave</button>
+                <button class="ptab-btn" data-tab="my-pros">Ventajas PyME</button>
+                <button class="ptab-btn" data-tab="my-install">Requerimientos de Instalación</button>
+              </div>
+
+              <div class="ptab-content active" id="my-features">
+                <div class="feature-cards-grid">
+                  <div class="f-card">
+                    <i class="ph-fill ph-lightning"></i>
+                    <h4>Rendimiento en Lecturas Web</h4>
+                    <p>Optimizado para alta tasa de lecturas (SELECTs) concurrentes. Excelente comportamiento en portales web, tiendas virtuales y catálogos.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-gear"></i>
+                    <h4>Motor de Almacenamiento InnoDB</h4>
+                    <p>Garantiza soporte transaccional ACID, claves foráneas, bloqueos a nivel de fila y recuperación automática tras caídas de energía.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-globe"></i>
+                    <h4>Ecosistema Web Universal</h4>
+                    <p>Cualquier panel de hosting (cPanel, Plesk), framework (Laravel, Django, Spring) o CMS (WordPress, PrestaShop) lo soporta nativamente.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-users-three"></i>
+                    <h4>Abundancia de Especialistas</h4>
+                    <p>El mercado laboral local cuenta con el mayor número de técnicos y desarrolladores familiarizados con MySQL y SQL estándar.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="my-pros">
+                <div class="pros-cons-grid">
+                  <div class="pros-box">
+                    <h4><i class="ph-fill ph-thumbs-up"></i> Ventajas para la PyME</h4>
+                    <ul>
+                      <li><strong>Instalación y mantenimiento triviales:</strong> Paquetes en un solo clic (XAMPP/Wamp para pruebas, paquetes APT estándar para producción).</li>
+                      <li><strong>Herramientas visuales livianas:</strong> HeidiSQL y DBeaver ofrecen una gestión rápida sin demandar recursos en las PCs de administración.</li>
+                      <li><strong>MariaDB como bifurcación 100% comunitaria:</strong> Evita cualquier dependencia de las políticas comerciales de Oracle.</li>
+                    </ul>
+                  </div>
+                  <div class="cons-box">
+                    <h4><i class="ph-fill ph-warning"></i> Consideraciones</h4>
+                    <ul>
+                      <li>Menor tolerancia a consultas analíticas o reportes OLAP extremadamente complejos frente a PostgreSQL.</li>
+                      <li>Diferencias entre MySQL (Oracle) y MariaDB en características avanzadas recientes.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="my-install">
+                <div class="install-specs">
+                  <div class="install-req-grid">
+                    <div class="req-item">
+                      <span class="req-label">RAM Mínima:</span>
+                      <span class="req-val">512 MB (1 GB recomendado)</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">RAM Recomendada:</span>
+                      <span class="req-val">2 GB - 4 GB</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Espacio en Disco:</span>
+                      <span class="req-val">400 MB base + almacenamiento</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Sistemas Operativos:</span>
+                      <span class="req-val">Linux, Windows, macOS, FreeBSD</span>
+                    </div>
+                  </div>
+
+                  <div class="code-preview">
+                    <div class="code-header">
+                      <span>Instalación y Configuración Segura (MariaDB Server)</span>
+                      <span class="code-lang">BASH</span>
+                    </div>
+                    <pre><code><span class="c-comment"># Instalación en servidor Linux</span>
+sudo apt update && sudo apt install -y mariadb-server mariadb-client
+
+<span class="c-comment"># Asistente de seguridad obligatorio en PyME</span>
+sudo mysql_secure_installation
+
+<span class="c-comment"># Acceso inicial a la consola administrativa</span>
+sudo mariadb -u root -p</code></pre>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Explicar que MariaDB nació para proteger a la comunidad cuando Oracle compró Sun Microsystems (dueña de MySQL).</li>
+            <li>Si la PyME tiene planeado lanzar una tienda online con WooCommerce o PrestaShop, MySQL/MariaDB es la opción de menor fricción.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 7: FICHA TÉCNICA 3: MS SQL SERVER EXPRESS
+           ========================================== -->
+      <section class="slide" id="slide-7" data-title="MS SQL Server Express" data-section="Detalle SGBD">
+        <div class="slide-content">
+          <div class="profile-layout">
+            <div class="profile-sidebar">
+              <div class="engine-avatar ms-avatar">
+                <i class="ph-fill ph-windows-logo"></i>
+              </div>
+              <h3>MS SQL Express</h3>
+              <span class="version-tag">2022 Express Edition</span>
+              
+              <div class="spec-list">
+                <div class="spec-row">
+                  <span>Modelo:</span>
+                  <strong>Relacional Comercial</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Licencia:</span>
+                  <strong>Freeware Propietario</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Costo Licencia:</span>
+                  <strong class="text-green">$0 (Con Límites Técnicos)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>GUI Principal:</span>
+                  <strong>SSMS (SQL Server Management Studio)</strong>
+                </div>
+              </div>
+
+              <div class="score-pill">
+                <span>Puntuación PyME:</span>
+                <strong>7.8 / 10</strong>
+              </div>
+            </div>
+
+            <div class="profile-details">
+              <div class="profile-tabs-header">
+                <button class="ptab-btn active" data-tab="ms-features">Características Clave</button>
+                <button class="ptab-btn" data-tab="ms-pros">Límites & Consideraciones</button>
+                <button class="ptab-btn" data-tab="ms-install">Requerimientos de Instalación</button>
+              </div>
+
+              <div class="ptab-content active" id="ms-features">
+                <div class="feature-cards-grid">
+                  <div class="f-card">
+                    <i class="ph-fill ph-desktop"></i>
+                    <h4>SSMS: Entorno Visual Superior</h4>
+                    <p>SQL Server Management Studio es reconocido como una de las mejores herramientas para depurar, perfilar consultas y planificar backups.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-microsoft-excel-logo"></i>
+                    <h4>Integración Microsoft 365</h4>
+                    <p>Conexión directa y sin intermediarios con Microsoft Excel, Access, Power BI y aplicaciones desarrolladas en C# / .NET.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-shield-check"></i>
+                    <h4>T-SQL y Procedimientos Almacenados</h4>
+                    <p>Motor robusto de lógica de negocio en servidor con transacciones anidadas, triggers y optimizador de consultas avanzado.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-arrows-clockwise"></i>
+                    <h4>Ruta de Actualización Transparente</h4>
+                    <p>Si la PyME crece, migrar a la versión Standard o Azure SQL no requiere cambiar el código de las consultas.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="ms-pros">
+                <div class="pros-cons-grid">
+                  <div class="pros-box">
+                    <h4><i class="ph-fill ph-thumbs-up"></i> Cuándo elegirlo en PyME</h4>
+                    <ul>
+                      <li>La empresa ya opera con software ERP propietario desarrollado en .NET (p.ej. Softland, Contpaqi, SAP Business One en SQL).</li>
+                      <li>El personal interno domina administración de Windows Server y Active Directory.</li>
+                    </ul>
+                  </div>
+                  <div class="cons-box warning-border">
+                    <h4><i class="ph-fill ph-warning-octagon text-coral"></i> Restricciones Críticas (Versión Express)</h4>
+                    <ul>
+                      <li><strong>Límite de tamaño:</strong> Máximo 10 GB por archivo de base de datos.</li>
+                      <li><strong>Límite de memoria:</strong> Solo aprovecha hasta 1.410 MB de RAM de cómputo por instancia.</li>
+                      <li><strong>Límite de procesador:</strong> Limitado a 1 socket o 4 núcleos.</li>
+                      <li><strong>Sin SQL Agent:</strong> Los backups automáticos requieren scripts en el Programador de Tareas de Windows.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="ms-install">
+                <div class="install-specs">
+                  <div class="install-req-grid">
+                    <div class="req-item">
+                      <span class="req-label">RAM Mínima:</span>
+                      <span class="req-val">2 GB (Mínimo Windows)</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">RAM Recomendada:</span>
+                      <span class="req-val">4 GB - 8 GB para el servidor</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Espacio en Disco:</span>
+                      <span class="req-val">6 GB libres (Motor + SSMS)</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Sistemas Operativos:</span>
+                      <span class="req-val">Windows 10/11 Pro, Windows Server (Linux via container)</span>
+                    </div>
+                  </div>
+
+                  <div class="code-preview">
+                    <div class="code-header">
+                      <span>Proceso de Instalación en Servidor Windows</span>
+                      <span class="code-lang">PASOS TÉCNICOS</span>
+                    </div>
+                    <pre><code>1. Descargar instalador web: 'SQL2022-SSEI-Expr.exe' desde Microsoft
+2. Seleccionar modo: "Básica" o "Personalizada" (Recomendado: Autenticación Mixta - SQL y Windows)
+3. Configurar usuario 'sa' con contraseña de alta complejidad.
+4. Descargar e instalar por separado SSMS (SQL Server Management Studio).
+5. Habilitar protocolo TCP/IP (puerto 1433) en SQL Server Configuration Manager para acceso en red LAN.</code></pre>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Alertar sobre el "efecto trampa": la versión Express es gratis, pero el límite de 10 GB puede alcanzarse en 2 o 3 años si se guardan imágenes o PDFs en la base de datos.</li>
+            <li>El salto a la versión Standard de SQL Server cuesta miles de dólares por núcleo, algo que puede desestabilizar el presupuesto de una PyME.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 8: FICHA TÉCNICA 4: MONGODB
+           ========================================== -->
+      <section class="slide" id="slide-8" data-title="MongoDB en Detalle" data-section="Detalle SGBD">
+        <div class="slide-content">
+          <div class="profile-layout">
+            <div class="profile-sidebar">
+              <div class="engine-avatar mo-avatar">
+                <i class="ph-fill ph-leaf"></i>
+              </div>
+              <h3>MongoDB</h3>
+              <span class="version-tag">Community v7.x / 8.x</span>
+              
+              <div class="spec-list">
+                <div class="spec-row">
+                  <span>Modelo:</span>
+                  <strong>NoSQL Documental (BSON)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Licencia:</span>
+                  <strong>SSPL (Server Side Public License)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Costo Licencia:</span>
+                  <strong class="text-green">$0 (Community) / Atlas Free</strong>
+                </div>
+                <div class="spec-row">
+                  <span>GUI Principal:</span>
+                  <strong>MongoDB Compass</strong>
+                </div>
+              </div>
+
+              <div class="score-pill">
+                <span>Puntuación PyME:</span>
+                <strong>7.5 / 10</strong>
+              </div>
+            </div>
+
+            <div class="profile-details">
+              <div class="profile-tabs-header">
+                <button class="ptab-btn active" data-tab="mo-features">Características Clave</button>
+                <button class="ptab-btn" data-tab="mo-pros">Ventajas & Riesgos PyME</button>
+                <button class="ptab-btn" data-tab="mo-install">Requerimientos de Instalación</button>
+              </div>
+
+              <div class="ptab-content active" id="mo-features">
+                <div class="feature-cards-grid">
+                  <div class="f-card">
+                    <i class="ph-fill ph-file-text"></i>
+                    <h4>Documentos BSON Flexibles</h4>
+                    <p>Cada registro puede tener estructuras y campos distintos. Ideal para inventarios heterogéneos (ej. una ferretería con productos de especificaciones disímiles).</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-rocket"></i>
+                    <h4>Agilidad en Prototipado</h4>
+                    <p>Desarrollo acelerado en aplicaciones web modernas (Node.js, React). No requiere ejecutar scripts de migración DDL (ALTER TABLE) para cada cambio.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-cloud"></i>
+                    <h4>Opción Gestionada (Atlas Free Tier)</h4>
+                    <p>Permite desplegar instancias gratuitas de 512 MB en la nube sin necesidad de mantener un servidor local.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-chart-polar"></i>
+                    <h4>Framework de Agregación</h4>
+                    <p>Potente pipeline de agregación para agrupar, filtrar y generar métricas estadísticas en tiempo real.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="mo-pros">
+                <div class="pros-cons-grid">
+                  <div class="pros-box">
+                    <h4><i class="ph-fill ph-thumbs-up"></i> Ventajas para la PyME</h4>
+                    <ul>
+                      <li>Menor fricción si el equipo de programadores programa en JavaScript / TypeScript.</li>
+                      <li>Excelente para registrar bitácoras de auditoría, carritos de compras o historiales de mensajería/notificaciones.</li>
+                    </ul>
+                  </div>
+                  <div class="cons-box">
+                    <h4><i class="ph-fill ph-warning"></i> Riesgos y Desafíos en PyME</h4>
+                    <ul>
+                      <li><strong>Consumo de memoria agresivo:</strong> El motor WiredTiger reserva por defecto el 50% de la RAM disponible para cache.</li>
+                      <li><strong>Integridad referencial delegada al código:</strong> No hay restricciones de clave foránea automática; si el código tiene un bug, pueden quedar registros huérfanos.</li>
+                      <li>No es el motor natural para balances contables o libros mayores.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="mo-install">
+                <div class="install-specs">
+                  <div class="install-req-grid">
+                    <div class="req-item">
+                      <span class="req-label">RAM Mínima:</span>
+                      <span class="req-val">2 GB (4 GB recomendado)</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">RAM Recomendada:</span>
+                      <span class="req-val">8 GB para rendimiento óptimo</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Arquitectura CPU:</span>
+                      <span class="req-val">x86_64 con soporte de instrucciones AVX</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Sistemas Operativos:</span>
+                      <span class="req-val">Linux, Windows, macOS, Docker</span>
+                    </div>
+                  </div>
+
+                  <div class="code-preview">
+                    <div class="code-header">
+                      <span>Despliegue Rápido con Docker Compose para PyME</span>
+                      <span class="code-lang">YAML</span>
+                    </div>
+                    <pre><code>services:
+  mongodb:
+    image: mongo:7.0
+    container_name: pyme-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: PasswordSeguro2026!
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+volumes:
+  mongodata:</code></pre>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Señalar que muchas PyMEs eligen MongoDB pensando que es "fácil", pero descubren que la contabilidad y el balance financiero requieren un modelo relacional estricto con JOINs y transacciones ACID nativas.</li>
+            <li>Recomendar MongoDB como base secundaria o para catálogos de e-commerce, pero no como corazón contable único.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 9: FICHA TÉCNICA 5: SQLITE
+           ========================================== -->
+      <section class="slide" id="slide-9" data-title="SQLite en Detalle" data-section="Detalle SGBD">
+        <div class="slide-content">
+          <div class="profile-layout">
+            <div class="profile-sidebar">
+              <div class="engine-avatar sq-avatar">
+                <i class="ph-fill ph-file-code"></i>
+              </div>
+              <h3>SQLite</h3>
+              <span class="version-tag">v3.45+</span>
+              
+              <div class="spec-list">
+                <div class="spec-row">
+                  <span>Modelo:</span>
+                  <strong>Relacional Embebido</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Licencia:</span>
+                  <strong class="text-green">Dominio Público</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Costo Licencia:</span>
+                  <strong class="text-green">$0 (Absoluto)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>GUI Principal:</span>
+                  <strong>DB Browser for SQLite / DBeaver</strong>
+                </div>
+              </div>
+
+              <div class="score-pill">
+                <span>Puntuación PyME:</span>
+                <strong>8.2 / 10</strong>
+              </div>
+            </div>
+
+            <div class="profile-details">
+              <div class="profile-tabs-header">
+                <button class="ptab-btn active" data-tab="sq-features">Características Clave</button>
+                <button class="ptab-btn" data-tab="sq-pros">Ventajas & Límites</button>
+                <button class="ptab-btn" data-tab="sq-install">Requerimientos de Instalación</button>
+              </div>
+
+              <div class="ptab-content active" id="sq-features">
+                <div class="feature-cards-grid">
+                  <div class="f-card">
+                    <i class="ph-fill ph-zero"></i>
+                    <h4>Zero-Configuration (Sin Servidor)</h4>
+                    <p>No existe un demonio, servicio en segundo plano ni puerto de red que configurar. La base de datos corre dentro del propio proceso de la aplicación.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-file"></i>
+                    <h4>Formato de Archivo Único</h4>
+                    <p>Toda la base de datos (esquema, tablas, índices, datos) reside en un único archivo <code>.db</code> multiplataforma y transferible.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-floppy-disk"></i>
+                    <h4>Backups Triviales</h4>
+                    <p>Hacer una copia de respaldo es tan simple como copiar el archivo o usar el comando <code>.backup</code>. Cero estrés de dumps complejos.</p>
+                  </div>
+                  <div class="f-card">
+                    <i class="ph-fill ph-feather"></i>
+                    <h4>Huella Mínima Extrema</h4>
+                    <p>Menos de 1 MB de código compilado. Ideal para terminales punto de venta (POS) antiguos o computadoras con bajos recursos.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="sq-pros">
+                <div class="pros-cons-grid">
+                  <div class="pros-box">
+                    <h4><i class="ph-fill ph-thumbs-up"></i> Casos Ganadores en PyME</h4>
+                    <ul>
+                      <li><strong>Terminales Punto de Venta (POS) locales:</strong> Funciona offline en cada caja sin depender de la red de la tienda.</li>
+                      <li><strong>Software de escritorio de caja o facturación monousuario.</strong></li>
+                      <li><strong>Modo WAL (Write-Ahead Logging):</strong> Permite múltiples lectores concurrentes mientras ocurre una escritura.</li>
+                    </ul>
+                  </div>
+                  <div class="cons-box">
+                    <h4><i class="ph-fill ph-warning"></i> Limitaciones Clave</h4>
+                    <ul>
+                      <li><strong>Escritura concurrente limitada:</strong> Solo un proceso puede escribir en la base de datos a la vez (bloqueo a nivel de archivo).</li>
+                      <li>No cuenta con gestión de usuarios o permisos por tabla nativos (la seguridad depende de los permisos del sistema operativo).</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptab-content" id="sq-install">
+                <div class="install-specs">
+                  <div class="install-req-grid">
+                    <div class="req-item">
+                      <span class="req-label">RAM Mínima:</span>
+                      <span class="req-val">&lt; 16 MB</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">RAM Recomendada:</span>
+                      <span class="req-val">64 MB - 256 MB</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Espacio en Disco:</span>
+                      <span class="req-val">&lt; 2 MB binario</span>
+                    </div>
+                    <div class="req-item">
+                      <span class="req-label">Instalador:</span>
+                      <span class="req-val">Ninguno (Viene preinstalado en Python, PHP, C#)</span>
+                    </div>
+                  </div>
+
+                  <div class="code-preview">
+                    <div class="code-header">
+                      <span>Uso Inmediato en Python / Terminal (Sin instalar servicios)</span>
+                      <span class="code-lang">PYTHON / BASH</span>
+                    </div>
+                    <pre><code><span class="c-comment"># En Python: ¡Disponible sin dependencias externas!</span>
+import sqlite3
+
+conn = sqlite3.connect('pyme_ventas.db')
+cursor = conn.cursor()
+cursor.execute('''CREATE TABLE IF NOT EXISTS ventas 
+                 (id INTEGER PRIMARY KEY, producto TEXT, total REAL)''')
+conn.commit()</code></pre>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Enfatizar que SQLite es una joya subestimada: si la PyME es una tienda con un solo equipo de facturación, SQLite elimina el 100% de los dolores de cabeza de mantenimiento de servidores.</li>
+            <li>Con el modo WAL activado, puede soportar cientos de peticiones por segundo sin pestañear.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 10: MATRIZ COMPARATIVA Y BENCHMARK
+           ========================================== -->
+      <section class="slide" id="slide-10" data-title="Matriz Comparativa" data-section="Comparativa">
+        <div class="slide-content">
+          <div class="slide-header">
+            <div class="tag-label"><i class="ph ph-table"></i> Análisis Frente a Frente</div>
+            <h2>Matriz Comparativa Exhaustiva</h2>
+            <p class="slide-lead">Evaluación de atributos técnicos, operativos y financieros para los 5 SGBD.</p>
+          </div>
+
+          <div class="matrix-filter-bar">
+            <span>Filtrar vista:</span>
+            <button class="matrix-pill-btn active" data-filter="all">Todos los Atributos</button>
+            <button class="matrix-pill-btn" data-filter="tech">Técnico / Hardware</button>
+            <button class="matrix-pill-btn" data-filter="cost">Costo & Licencia</button>
+            <button class="matrix-pill-btn" data-filter="ops">Operación & Facilidad</button>
+          </div>
+
+          <div class="table-responsive-container">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Criterio Evaluado</th>
+                  <th><i class="ph-fill ph-database text-blue"></i> PostgreSQL</th>
+                  <th><i class="ph-fill ph-hard-drives text-cyan"></i> MySQL / MariaDB</th>
+                  <th><i class="ph-fill ph-windows-logo text-purple"></i> MS SQL Express</th>
+                  <th><i class="ph-fill ph-leaf text-green"></i> MongoDB</th>
+                  <th><i class="ph-fill ph-file-code text-amber"></i> SQLite</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-cat="tech">
+                  <td class="row-label"><strong>Modelo de Datos</strong></td>
+                  <td>Objeto-Relacional</td>
+                  <td>Relacional</td>
+                  <td>Relacional</td>
+                  <td>Documental (NoSQL)</td>
+                  <td>Relacional Embebido</td>
+                </tr>
+                <tr data-cat="cost">
+                  <td class="row-label"><strong>Costo Licencia</strong></td>
+                  <td><span class="badge-status success">$0 (Libre)</span></td>
+                  <td><span class="badge-status success">$0 (GPL/MariaDB)</span></td>
+                  <td><span class="badge-status warning">$0 (Límites 10GB)</span></td>
+                  <td><span class="badge-status success">$0 (Community)</span></td>
+                  <td><span class="badge-status success">$0 (Dominio Púb.)</span></td>
+                </tr>
+                <tr data-cat="tech">
+                  <td class="row-label"><strong>RAM Mínima / Óptima</strong></td>
+                  <td>1 GB / 4 GB</td>
+                  <td>512 MB / 2 GB</td>
+                  <td>2 GB / 4 GB (Usa máx 1.4G)</td>
+                  <td>2 GB / 8 GB</td>
+                  <td>&lt; 16 MB / 256 MB</td>
+                </tr>
+                <tr data-cat="tech">
+                  <td class="row-label"><strong>Límites de Almacenamiento</strong></td>
+                  <td>Ilimitado (Práctico)</td>
+                  <td>Ilimitado (Práctico)</td>
+                  <td><span class="badge-status danger">Máximo 10 GB</span></td>
+                  <td>Ilimitado</td>
+                  <td>Hasta 281 TB (Archivo)</td>
+                </tr>
+                <tr data-cat="tech">
+                  <td class="row-label"><strong>Cumplimiento ACID</strong></td>
+                  <td><span class="badge-status success">100% Estricto</span></td>
+                  <td><span class="badge-status success">Completo (InnoDB)</span></td>
+                  <td><span class="badge-status success">100% Estricto</span></td>
+                  <td>Configurable (Doc/Multi-doc)</td>
+                  <td><span class="badge-status success">Completo</span></td>
+                </tr>
+                <tr data-cat="ops">
+                  <td class="row-label"><strong>Facilidad de Administración</strong></td>
+                  <td>Media (Configuración)</td>
+                  <td>Alta (Heidi, phpMyAdmin)</td>
+                  <td>Muy Alta (SSMS visual)</td>
+                  <td>Media-Alta (Compass)</td>
+                  <td><span class="badge-status success">Máxima (Cero admin)</span></td>
+                </tr>
+                <tr data-cat="ops">
+                  <td class="row-label"><strong>Curva de Aprendizaje</strong></td>
+                  <td>Moderada</td>
+                  <td>Baja / Muy amigable</td>
+                  <td>Baja (Si usa Windows)</td>
+                  <td>Moderada (Sintaxis MQL)</td>
+                  <td>Mínima</td>
+                </tr>
+                <tr data-cat="ops">
+                  <td class="row-label"><strong>Ecosistema Local PyME</strong></td>
+                  <td>En rápido crecimiento</td>
+                  <td>Muy extendido</td>
+                  <td>Común en software empaquetado</td>
+                  <td>Medio (Startups)</td>
+                  <td>Universal</td>
+                </tr>
+                <tr data-cat="cost">
+                  <td class="row-label"><strong>TCO a 3 Años (Estimado)</strong></td>
+                  <td><span class="badge-status success">Muy Bajo ($0 licencias)</span></td>
+                  <td><span class="badge-status success">Muy Bajo ($0 licencias)</span></td>
+                  <td><span class="badge-status warning">Medio (Riesgo upgrades)</span></td>
+                  <td>Bajo-Medio (Hardware RAM)</td>
+                  <td><span class="badge-status success">Cero ($0 infra)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Explicar a la audiencia cómo usar los botones de filtrado para responder inquietudes directas de finanzas (costos) o infraestructura (hardware).</li>
+            <li>Destacar la fila del límite de almacenamiento de SQL Server Express como el principal factor de riesgo a largo plazo.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 11: CASO DE ESTUDIO Y EVALUADOR INTERACTIVO
+           ========================================== -->
+      <section class="slide" id="slide-11" data-title="Simulador de Decisión" data-section="Caso Real">
+        <div class="slide-content">
+          <div class="slide-header">
+            <div class="tag-label"><i class="ph ph-magic-wand"></i> Herramienta Dinámica</div>
+            <h2>Caso de Estudio & Calculadora de Selección PyME</h2>
+            <p class="slide-lead">Simula el perfil de la empresa local para obtener la recomendación técnica y justificación inmediata.</p>
+          </div>
+
+          <div class="calculator-container">
+            <div class="calc-form">
+              <h3><i class="ph-fill ph-sliders-horizontal"></i> Parámetros de la PyME</h3>
+              
+              <div class="form-group">
+                <label>1. Tipo Principal de Aplicación:</label>
+                <select id="pymeAppType" class="calc-select">
+                  <option value="erp">Sistema de Facturación, Inventario y ERP Contable</option>
+                  <option value="web">Tienda Virtual / Portal E-Commerce (Web)</option>
+                  <option value="pos">Punto de Venta Local (Caja de Tienda Física)</option>
+                  <option value="catalog">Catálogo de Productos Dinámicos / Documentos</option>
+                  <option value="legacy">Software Administrativo en Windows (.NET / C#)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>2. Concurrencia de Usuarios:</label>
+                <select id="pymeConcurrency" class="calc-select">
+                  <option value="single">1 a 3 usuarios (Monousuario / Caja individual)</option>
+                  <option value="medium" selected>4 a 25 usuarios concurrentes (PyME Estándar)</option>
+                  <option value="high">Más de 30 usuarios simultáneos</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>3. Servidor e Infraestructura Disponible:</label>
+                <select id="pymeInfra" class="calc-select">
+                  <option value="linux">Servidor Linux / VPS Cloud (Ubuntu/Debian)</option>
+                  <option value="windows" selected>Servidor Windows en Red Local (LAN)</option>
+                  <option value="desktop">PC de Oficina Compartida (Recursos bajos &lt; 4GB)</option>
+                </select>
+              </div>
+
+              <button class="btn-calculate" id="btnRunCalc">
+                <i class="ph-fill ph-sparkle"></i> Evaluar y Generar Recomendación
+              </button>
+            </div>
+
+            <div class="calc-result" id="calcResult">
+              <div class="result-header">
+                <span class="result-label">Recomendación Sugerida</span>
+                <h3 class="result-engine" id="resultEngineTitle">PostgreSQL</h3>
+                <span class="match-score" id="resultMatchScore">98% de Compatibilidad</span>
+              </div>
+
+              <div class="result-body">
+                <p id="resultJustification">
+                  Para sistemas de facturación, contabilidad e inventarios con concurrencia media, <strong>PostgreSQL</strong> es la opción óptima por su estricto cumplimiento ACID, cero costos de licencia y soporte de datos híbridos.
+                </p>
+
+                <div class="result-specs-badge" id="resultSpecs">
+                  <div><strong>RAM Sugerida:</strong> <span id="rRam">4 GB</span></div>
+                  <div><strong>Costo Licencia:</strong> <span id="rCost">$0</span></div>
+                  <div><strong>Herramienta:</strong> <span id="rTool">DBeaver / pgAdmin</span></div>
+                </div>
+
+                <div class="result-action-note">
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span id="rTip">Arquitectura escalable a prueba de obsolescencia.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Invitar al jurado o a los directivos a cambiar los parámetros en vivo durante la defensa para ver cómo se adapta la recomendación.</li>
+            <li>Demostrar que una PyME no necesita casarse con una sola herramienta, sino evaluar según su caso de uso real.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 12: CONCLUSIÓN Y DEFENSA FINAL
+           ========================================== -->
+      <section class="slide" id="slide-12" data-title="Conclusión y Dictamen" data-section="Cierre">
+        <div class="slide-content conclusion-layout">
+          <div class="slide-header text-center">
+            <div class="tag-label center"><i class="ph-fill ph-trophy"></i> Dictamen y Defensa Final</div>
+            <h2>La Selección Óptima para la PyME Local</h2>
+            <p class="slide-lead center">Balance integral de costos, fiabilidad técnica y viabilidad de soporte.</p>
+          </div>
+
+          <div class="verdict-banner">
+            <div class="verdict-trophy">
+              <i class="ph-fill ph-trophy"></i>
+            </div>
+            <div class="verdict-text">
+              <div class="verdict-sub">Veredicto Oficial del Taller:</div>
+              <h3 class="verdict-title">PostgreSQL como Estándar Corporativo PyME</h3>
+              <p>
+                <strong>Justificación Técnica y Económica:</strong> PostgreSQL ofrece el mayor equilibrio entre confiabilidad transaccional inquebrantable (ACID), costo de licenciamiento nulo ($0 sin límites artificiales de base de datos o RAM) y flexibilidad para crecer sin necesidad de migraciones traumáticas en los próximos 5 a 10 años.
+              </p>
+            </div>
+          </div>
+
+          <div class="roadmap-grid">
+            <div class="roadmap-step">
+              <div class="step-num">Fase 1</div>
+              <h4>Despliegue</h4>
+              <p>Instalación en servidor Linux LTS o contenedor Docker con 4GB RAM y discos SSD en RAID.</p>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="step-num">Fase 2</div>
+              <h4>Seguridad</h4>
+              <p>Autenticación segura (SCRAM-SHA-256), cortafuegos LAN y separación de roles de usuario.</p>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="step-num">Fase 3</div>
+              <h4>Backups Automatizados</h4>
+              <p>Script cron nocturno con <code>pg_dump</code> sincronizado a almacenamiento en la nube cifrado.</p>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="step-num">Fase 4</div>
+              <h4>Monitoreo</h4>
+              <p>Inspección periódica de consultas lentas mediante la extensión <code>pg_stat_statements</code>.</p>
+            </div>
+          </div>
+
+          <div class="defense-qna-box">
+            <div class="qna-text">
+              <i class="ph-fill ph-chats-circle"></i>
+              <span>¿Preguntas y Debate Técnico con el Comité Evaluador?</span>
+            </div>
+            <div class="qna-badge">¡Muchas Gracias!</div>
+          </div>
+        </div>
+
+        <aside class="speaker-notes-content">
+          <strong>Notas del Orador:</strong>
+          <ul>
+            <li>Cierre contundente de la presentación.</li>
+            <li>Reiterar las tres razones clave: (1) Sin licencias por núcleo, (2) Sin límite de 10 GB como MS SQL Express, (3) Máxima solidez para facturación y stock.</li>
+            <li>Abrir la ronda de preguntas y defensas.</li>
+          </ul>
+        </aside>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Barra Inferior de Navegación de Diapositivas -->
+  <footer class="pres-footer">
+    <div class="footer-left">
+      <div class="slide-nav-controls">
+        <button class="nav-btn" id="btnPrev" title="Anterior [←]">
+          <i class="ph ph-caret-left"></i>
+          <span>Anterior</span>
+        </button>
+        <span class="slide-counter" id="slideCounter">1 / 12</span>
+        <button class="nav-btn primary" id="btnNext" title="Siguiente [→]">
+          <span>Siguiente</span>
+          <i class="ph ph-caret-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-center">
+      <div class="slide-dots" id="slideDots">
+        <!-- Generados dinámicamente por JavaScript -->
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <span class="keyboard-tips">
+        <kbd>←</kbd> <kbd>→</kbd> Navegar &nbsp;|&nbsp; <kbd>N</kbd> Notas &nbsp;|&nbsp; <kbd>O</kbd> Mosaico &nbsp;|&nbsp; <kbd>F</kbd> Pantalla completa
+      </span>
+    </div>
+  </footer>
+
+  <!-- Modal / Drawer de Notas del Orador -->
+  <div class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <div class="notes-title">
+        <i class="ph-fill ph-chalkboard-teacher"></i>
+        <span>Guía de Defensa & Notas del Orador</span>
+      </div>
+      <button class="btn-close-notes" id="btnCloseNotes" title="Cerrar [N]">
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+    <div class="notes-body" id="notesBody">
+      <!-- Inyectado dinámicamente según la diapositiva actual -->
+    </div>
+  </div>
+
+  <!-- Modal Mosaico de Diapositivas (Overview / Esquema) -->
+  <div class="overview-modal" id="overviewModal">
+    <div class="overview-backdrop" id="overviewBackdrop"></div>
+    <div class="overview-dialog">
+      <div class="overview-dialog-header">
+        <div class="overview-title-group">
+          <i class="ph-fill ph-squares-four"></i>
+          <h3>Esquema de la Presentación (12 Diapositivas)</h3>
+        </div>
+        <button class="btn-close-overview" id="btnCloseOverview" title="Cerrar [Esc]">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <div class="overview-grid" id="overviewGrid">
+        <!-- Tarjetas en miniatura generadas por JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificación Toast Flotante -->
+  <div class="toast-notification" id="toastNotification">
+    <span id="toastMessage"></span>
+  </div>
+
+  <!-- JavaScript Principal -->
+  <script src="script.js"></script>
+</body>
+</html>
