@@ -17,9 +17,16 @@ Analizar las características arquitectónicas, ventajas competitivas y requerim
 ---
 
 ## 🚀 Características de la Presentación
-- **12 Diapositivas Estructuradas:** Desde el contexto inicial y matriz de criterios, pasando por fichas técnicas individuales, hasta la matriz comparativa y dictamen final.
-- **Diapositiva 1 Bento Hero:** Tarjetas interactivas de acceso directo a cada SGBD.
-- **Herramienta Interactiva:** Calculadora y simulador de selección PyME en tiempo real (Slide 11).
+- **8 Diapositivas Sintetizadas y Altamente Entendibles:**
+  1. **Portada Ejecutiva (Bento Hero):** Visión general con tarjetas de acceso directo a cada análisis.
+  2. **Realidad PyME y Criterios:** Las 3 restricciones operativas y los 4 pilares ponderados de evaluación (ACID, TCO, Hardware, Soporte).
+  3. **Panorama Estratégico:** Mapa comparativo de los 5 contendientes con ventajas y alertas clave.
+  4. **Duelo Relacional:** PostgreSQL vs. MySQL / MariaDB (integridad de negocio frente a velocidad web).
+  5. **Motores Especializados:** MS SQL Server Express (trampa de 10 GB), MongoDB (NoSQL) y SQLite (serverless local).
+  6. **Matriz Comparativa y TCO:** Tabla con filtros dinámicos y proyección económica a 3 años ($0 en licencias).
+  7. **Simulador de Decisión:** Calculadora interactiva en vivo según aplicación, concurrencia e infraestructura.
+  8. **Dictamen Final & Hoja de Ruta:** Veredicto justificado (PostgreSQL) y plan de implementación en 4 fases.
+- **Herramienta Interactiva:** Calculadora y simulador de selección PyME en tiempo real (Slide 7).
 - **Herramientas de Defensa:**
   - `N`: Guía de notas del orador para responder preguntas del comité.
   - `O` / `Esc`: Vista de mosaico/esquema para saltar a cualquier diapositiva.
