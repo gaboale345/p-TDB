@@ -1544,28 +1544,77 @@ body.theme-light .code-lang {
 }
 
 /* ==========================================================================
-   SLIDE 10: MATRIZ COMPARATIVA
+   SLIDE 6: MATRIZ COMPARATIVA Y TCO (OPTIMIZADA AL 100% PARA PANTALLA COMPLETA)
    ========================================================================== */
+.matrix-slide-layout {
+  padding: 20px 32px !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  overflow-y: hidden !important;
+}
+
+.matrix-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 10px;
+}
+
+.matrix-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.matrix-header-title-group h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.tag-label.compact {
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  margin-bottom: 0;
+}
+
 .matrix-filter-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-  font-size: 0.82rem;
+  gap: 6px;
+  margin-bottom: 0;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+.filter-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 4px;
 }
 
 .matrix-pill-btn {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  padding: 5px 12px;
+  padding: 4px 11px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .matrix-pill-btn:hover {
@@ -1577,7 +1626,7 @@ body.theme-light .code-lang {
   background: var(--gradient-blue);
   border-color: var(--blue-500);
   color: #ffffff;
-  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
 }
 
 body.theme-light .matrix-pill-btn.active {
@@ -1587,25 +1636,29 @@ body.theme-light .matrix-pill-btn.active {
 }
 
 .table-responsive-container {
-  overflow-x: auto;
+  width: 100%;
   border: 1px solid var(--border-blue);
   border-radius: 12px;
   background: var(--bg-card);
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
 .comparison-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.84rem;
+  font-size: 0.81rem;
 }
 
 .comparison-table th {
   background: var(--bg-blue-surface);
-  padding: 12px 14px;
+  padding: 8px 12px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   border-bottom: 1px solid var(--border-blue);
   white-space: nowrap;
   color: var(--text-primary);
@@ -1613,18 +1666,40 @@ body.theme-light .matrix-pill-btn.active {
 
 /* Destacado de columna PostgreSQL recomendada */
 .comparison-table th:nth-child(2) {
-  background: rgba(37, 99, 235, 0.16);
+  background: rgba(37, 99, 235, 0.2);
   border-bottom-color: var(--blue-400);
+  color: #ffffff;
+}
+
+body.theme-light .comparison-table th:nth-child(2) {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--blue-700);
 }
 
 .comparison-table td:nth-child(2) {
-  background: rgba(37, 99, 235, 0.04);
+  background: rgba(37, 99, 235, 0.05);
+  font-weight: 600;
+}
+
+.winner-micro-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--gradient-blue);
+  color: #ffffff;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .comparison-table td {
-  padding: 11px 14px;
+  padding: 7px 12px;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-secondary);
+  line-height: 1.3;
 }
 
 .comparison-table tbody tr:last-child td {
@@ -1632,7 +1707,7 @@ body.theme-light .matrix-pill-btn.active {
 }
 
 .comparison-table tbody tr:hover td {
-  background: rgba(59, 130, 246, 0.05);
+  background: rgba(59, 130, 246, 0.06);
   color: var(--text-primary);
 }
 
@@ -1640,17 +1715,19 @@ body.theme-light .matrix-pill-btn.active {
   color: var(--text-primary) !important;
   font-weight: 600;
   white-space: nowrap;
+  font-size: 0.81rem;
 }
 
 .badge-status {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   border: 1px solid var(--border-blue);
   background: var(--bg-blue-surface);
   color: var(--blue-300);
+  white-space: nowrap;
 }
 
 body.theme-light .badge-status {
@@ -1669,6 +1746,50 @@ body.theme-light .badge-status {
   border-color: rgba(245, 158, 11, 0.35);
   background: rgba(245, 158, 11, 0.1);
   color: #fde68a;
+}
+
+/* Ribon TCO Compacto Inferior */
+.matrix-tco-ribbon {
+  background: var(--bg-blue-surface);
+  border: 1px solid var(--border-blue);
+  border-radius: 10px;
+  padding: 8px 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+body.theme-light .matrix-tco-ribbon {
+  background: var(--bg-blue-tint);
+}
+
+.tco-ribbon-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tco-ribbon-item i {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.tco-ribbon-item .ribbon-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.tco-ribbon-item strong {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+.tco-ribbon-item span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
 }
 
 /* ==========================================================================
@@ -2942,8 +3063,50 @@ body.theme-light .thumb-num {
   .criteria-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .tco-summary-banner { grid-template-columns: 1fr; gap: 10px; }
 
+  .matrix-header-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .matrix-filter-bar { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+  .matrix-slide-layout { overflow-y: auto !important; padding: 16px !important; }
+  .matrix-tco-ribbon { grid-template-columns: 1fr; gap: 8px; }
+
   .overview-grid { grid-template-columns: repeat(2, 1fr); }
   .keyboard-tips { display: none; }
+}
+
+/* Pantallas y Laptops con Altura Compacta (<= 720px de alto) */
+@media (max-height: 720px) {
+  .matrix-slide-layout {
+    padding: 12px 24px !important;
+    gap: 8px !important;
+  }
+  .matrix-header-row {
+    padding-bottom: 6px;
+  }
+  .matrix-header-title-group h2 {
+    font-size: 1.2rem;
+  }
+  .comparison-table th {
+    padding: 6px 10px;
+    font-size: 0.77rem;
+  }
+  .comparison-table td {
+    padding: 5px 10px;
+    font-size: 0.77rem;
+    line-height: 1.2;
+  }
+  .badge-status {
+    padding: 1px 6px;
+    font-size: 0.69rem;
+  }
+  .matrix-tco-ribbon {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+  .tco-ribbon-item strong {
+    font-size: 0.76rem;
+  }
+  .tco-ribbon-item span {
+    font-size: 0.68rem;
+  }
 }
 
 /* Móviles Grandes y Pantallas Pequeñas (<= 768px) */

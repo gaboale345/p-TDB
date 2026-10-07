@@ -602,27 +602,30 @@
            SLIDE 6: MATRIZ COMPARATIVA Y TCO
            ========================================== -->
       <section class="slide" id="slide-6" data-title="Matriz Comparativa y TCO" data-section="Comparativa">
-        <div class="slide-content">
-          <div class="slide-header">
-            <div class="tag-label"><i class="ph ph-table"></i> Análisis Frente a Frente</div>
-            <h2>Matriz Comparativa & <span class="highlight-title">Costo Total (TCO)</span></h2>
-            <p class="slide-lead">Evaluación estandarizada de atributos técnicos, operativos y financieros con proyección de costos a 3 años.</p>
+        <div class="slide-content matrix-slide-layout">
+          <!-- Cabecera Compacta en 1 Fila Integrada con Filtros -->
+          <div class="matrix-header-row">
+            <div class="matrix-header-title-group">
+              <span class="tag-label compact"><i class="ph ph-table"></i> Análisis 360°</span>
+              <h2>Matriz Comparativa & <span class="highlight-title">TCO PyME</span></h2>
+            </div>
+
+            <div class="matrix-filter-bar">
+              <span class="filter-label"><i class="ph ph-funnel"></i> Filtrar:</span>
+              <button class="matrix-pill-btn active" data-filter="all">Todos</button>
+              <button class="matrix-pill-btn" data-filter="tech">Técnico / HW</button>
+              <button class="matrix-pill-btn" data-filter="cost">Costos</button>
+              <button class="matrix-pill-btn" data-filter="ops">Operación</button>
+            </div>
           </div>
 
-          <div class="matrix-filter-bar">
-            <span>Filtrar vista:</span>
-            <button class="matrix-pill-btn active" data-filter="all">Todos los Atributos</button>
-            <button class="matrix-pill-btn" data-filter="tech">Técnico / Hardware</button>
-            <button class="matrix-pill-btn" data-filter="cost">Costo & Licencia</button>
-            <button class="matrix-pill-btn" data-filter="ops">Operación & Facilidad</button>
-          </div>
-
+          <!-- Tabla Completa Optimizada para Pantalla -->
           <div class="table-responsive-container">
             <table class="comparison-table">
               <thead>
                 <tr>
                   <th>Criterio Evaluado</th>
-                  <th><i class="ph-fill ph-database text-blue"></i> PostgreSQL</th>
+                  <th><i class="ph-fill ph-database text-blue"></i> PostgreSQL <span class="winner-micro-tag">Top PyME</span></th>
                   <th><i class="ph-fill ph-hard-drives text-cyan"></i> MySQL / MariaDB</th>
                   <th><i class="ph-fill ph-windows-logo text-purple"></i> MS SQL Express</th>
                   <th><i class="ph-fill ph-leaf text-green"></i> MongoDB</th>
@@ -690,29 +693,29 @@
             </table>
           </div>
 
-          <!-- Banner TCO a 3 Años -->
-          <div class="tco-summary-banner">
-            <div class="tco-item">
-              <i class="ph-fill ph-receipt"></i>
-              <div>
-                <h5>Licenciamiento a 3 Años: $0</h5>
-                <p>PostgreSQL, MySQL y SQLite eliminan el 100% del costo de licencias. Ahorro estimado: &gt; $5,000 USD frente a software privativo.</p>
+          <!-- Cinta TCO Compacta en 1 Fila -->
+          <div class="matrix-tco-ribbon">
+            <div class="tco-ribbon-item">
+              <i class="ph-fill ph-receipt text-emerald"></i>
+              <div class="ribbon-content">
+                <strong>Licenciamiento 3 Años: $0 USD</strong>
+                <span>PostgreSQL, MariaDB y SQLite ahorran &gt; $5,000 USD</span>
               </div>
             </div>
 
-            <div class="tco-item">
-              <i class="ph-fill ph-hard-drive"></i>
-              <div>
-                <h5>Infraestructura: $25 - $45 / mes</h5>
-                <p>Un servidor económico Linux con 8 GB RAM o PC de oficina reacondicionada soporta toda la operación sin cuellos de botella.</p>
+            <div class="tco-ribbon-item">
+              <i class="ph-fill ph-hard-drive text-blue"></i>
+              <div class="ribbon-content">
+                <strong>Infraestructura: $25 - $40 / mes</strong>
+                <span>Servidor Linux VPS (8 GB RAM) cubre toda la PyME</span>
               </div>
             </div>
 
-            <div class="tco-item">
-              <i class="ph-fill ph-wrench"></i>
-              <div>
-                <h5>Herramientas Libres: $0</h5>
-                <p>Clientes visuales como DBeaver Community y HeidiSQL ofrecen administración profesional sin pagos adicionales.</p>
+            <div class="tco-ribbon-item">
+              <i class="ph-fill ph-wrench text-cyan"></i>
+              <div class="ribbon-content">
+                <strong>Herramientas Libres: $0 USD</strong>
+                <span>DBeaver Community, pgAdmin y SSMS sin costos</span>
               </div>
             </div>
           </div>
